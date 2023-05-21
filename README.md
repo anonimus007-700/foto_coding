@@ -5,5 +5,7 @@ The goal of this project is to encode and decode text on photos. Coding takes pl
 
 <h1>Extensions used</h1>
 I used:
-* python - for writing scripts
-* pyscript - so that these scripts can be displayed on a web page
+<ul>
+  <li> python - for writing scripts </li> 
+  <li> pyscript - so that these scripts can be displayed on a web page </li> 
+</ul>
