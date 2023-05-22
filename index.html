@@ -1,84 +1,14 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <title>Coder</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
-  </head>
-  <body>
-
-    <py-config>
-      packages = ["pillow"]
-    </py-config>
-
-    <py-script>
-        from pyscript import Element
-        from PIL import Image
-        from js import document
-
-        def submit(*args, **kwargs):
-            text = Element('text-to-cod').element.value
-            img_row = int(Element('row-widht').element.value)
-
-            image = Image.new('RGB',(img_row, 4000))
-
-            pixels = image.load()
-
-            text = Coder.text_to_cod(text)
-            
-            x, y = 0, 0
-            
-            for cod in text:
-                for i in cod:
-                    if x+1 < image.size[0]:
-                        if i == '1':
-                            pixels[x, y] = (255,255,255)
-                        else:
-                            pixels[x, y] = (0,0,0)
-                        x = x + 1
-                    elif x+1 >= image.size[0]:
-                        if i == '1':
-                            pixels[x, y] = (255,255,255)
-                        else:
-                            pixels[x, y] = (0,0,0)
-                        y = y + 1
-                        x = 0
-            
-                if x+1 < image.size[0]:
-                    pixels[x, y] = (1,0,0)
-                    x = x + 1
-                elif x+1 >= image.size[0]:
-                    pixels[x, y] = (1,0,0)
-                    y = y + 1
-                    x = 0
-            
-            image = image.crop((0, 0, img_row, y+1))
-
-            x = Element(image)
-            display(x, target="foto-cod", append=False)
-
-            display(image, target="foto-cod", append=False)
-            links = document.querySelector('#foto-cod img').getAttribute('src')
-            Element("img-download").element.href = links
-
-        class Coder:
-            def text_to_cod(text):
-                coding_text = []
-                out_list = []
-                for i in text:
-                    coding_text.append(str(ord(i)))
-                for i in coding_text:
-                    out_list.append(bin(int(i))[2:])
-                return out_list
-    </py-script>
-    <div id="foto-cod"></div>
-    <div id="text-input" class="text-input">
-        <textarea id="text-to-cod" placeholder="Введіть текст"></textarea><br>
-        <input type="number" id="row-widht">
-        <button id="submit-button" type="submit" py-click="submit()">submit</button><br>
-        <a href="#" target="_blank" download id="img-download" class="img-download">Download</a>
+</head>
+<body>
+    <div class="main_but">
+        <a href="coding.html">cod</a>
+        <a href="decoding.html">decod</a>
     </div>
-  </body>
+</body>
 </html>
